@@ -215,3 +215,90 @@ body {
 .footer em {
   color: #40e1e1;
 }
+
+/* --------------------------------------------------------------------------
+   Cuerpo de texto un punto más grande
+   El template está calibrado para titulares enormes y párrafos chicos. En una
+   página con poco contenido eso se lee vacío. Se suben los tres tamaños de
+   cuerpo y los dos de etiqueta, con su interlínea, respetando los tres
+   escalones del template.
+   -------------------------------------------------------------------------- */
+:root,
+body {
+  --_🔠-typography---size--body-1: 22px;
+  --_🔠-typography---line-height--body-1: 32px;
+  --_🔠-typography---size--body-2: 18px;
+  --_🔠-typography---line-height--body-2: 28px;
+  --_🔠-typography---size--body-3: 16px;
+  --_🔠-typography---line-height--body-3: 24px;
+  --_🔠-typography---size--label-1: 13px;
+  --_🔠-typography---line-height--label-1: 18px;
+  --_🔠-typography---size--label-2: 11px;
+  --_🔠-typography---line-height--label-2: 14px;
+}
+
+@media screen and (max-width: 991px) {
+  :root,
+  body {
+    --_🔠-typography---size--body-1: 21px;
+    --_🔠-typography---line-height--body-1: 30px;
+    --_🔠-typography---size--body-2: 18px;
+    --_🔠-typography---line-height--body-2: 28px;
+    --_🔠-typography---size--body-3: 16px;
+    --_🔠-typography---line-height--body-3: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root,
+  body {
+    --_🔠-typography---size--body-1: 18px;
+    --_🔠-typography---line-height--body-1: 27px;
+    --_🔠-typography---size--body-2: 17px;
+    --_🔠-typography---line-height--body-2: 26px;
+    --_🔠-typography---size--body-3: 15px;
+    --_🔠-typography---line-height--body-3: 22px;
+    --_🔠-typography---size--label-1: 12px;
+    --_🔠-typography---line-height--label-1: 16px;
+    --_🔠-typography---size--label-2: 10px;
+    --_🔠-typography---line-height--label-2: 13px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Las seis reglas de «Nosotros»
+   El template pensó estas fichas como pie de una sección, con letra muy chica.
+   Aquí son contenido principal, así que crecen.
+   -------------------------------------------------------------------------- */
+.growth-feature-tile .text-body-bold {
+  font-size: var(--_🔠-typography---size--body-1);
+  line-height: var(--_🔠-typography---line-height--body-1);
+}
+.growth-feature-tile .text-small.body-medium {
+  font-size: var(--_🔠-typography---size--body-2);
+  line-height: var(--_🔠-typography---line-height--body-2);
+}
+.feature-thirds {
+  grid-row-gap: var(--spacing--32, 32px);
+}
+
+/* --------------------------------------------------------------------------
+   El símbolo, grande, en la columna que quedó libre al quitar los logos de
+   clientes inventados. Acompaña al párrafo que explica el nombre.
+   -------------------------------------------------------------------------- */
+.mimbre-simbolo-bloque {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--spacing--32, 32px) 0;
+}
+.mimbre-simbolo {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  opacity: .9;
+}
+@media screen and (max-width: 767px) {
+  .mimbre-simbolo { max-width: 150px; }
+}
