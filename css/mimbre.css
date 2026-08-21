@@ -1,0 +1,201 @@
+/* ==========================================================================
+   mimbre · capa de marca
+   --------------------------------------------------------------------------
+   Este archivo se carga DESPUÉS del CSS del template y solo redefine sus
+   tokens de diseño: color y tipografía. No toca ninguna clase, ningún layout
+   y ninguna animación del template.
+
+   Referencia: manual de identidad de mimbre, agosto 2026.
+   ========================================================================== */
+
+/* ---------- tipografías de marca ---------- */
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto Flex";
+  src: url("../fonts/RobotoFlex-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- tokens ---------- */
+:root,
+body {
+  /* Color de marca -------------------------------------------------------- */
+  --_🎨-color--base---accent--primary: #2266ff;
+
+  /* Neutros: negro y blanco del manual. De aquí salen todas las
+     transparencias del template mediante color-mix. */
+  --_🎨-color--base---neutral--dark-100: #000000;
+  --_🎨-color--base---neutral--light-100: #ffffff;
+
+  /* Superficies claras: blanco de base y dos grises fríos derivados del azul */
+  --_🎨-color--base---background-depth--light: #eff3fb;
+  --_🎨-color--base---background-lift--light: #f7f9fe;
+  --_🎨-color--base---background-lift-low-opacity--light: #f7f9fea3;
+
+  /* Superficies oscuras: negro con matiz azul, para que el azul de marca
+     y el turquesa respiren encima sin perder contraste */
+  --_🎨-color--base---background-base--dark: #0b1020;
+  --_🎨-color--base---background-depth--dark: #070c18;
+  --_🎨-color--base---background-lift--dark: #141b30;
+  --_🎨-color--base---background-lift-low-opacity--dark: #141b3052;
+
+  /* Tipografía ------------------------------------------------------------ */
+  --_🔠-typography---font--heading-sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --_🔠-typography---font--heading-serif: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --_🔠-typography---font--body: "Roboto Flex", system-ui, Arial, sans-serif;
+  --_🔠-typography---font--button: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --_🔠-typography---font--label: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+
+  /* Los titulares van en Light, como manda el manual */
+  --_🔠-typography---weight--heading-sans: 300;
+  --_🔠-typography---weight--heading-serif: 300;
+  --_🔠-typography---weight--label: 600;
+  --_🔠-typography---weight--button: 600;
+}
+
+/* Montserrat es más ancha que IBM Plex Serif: se compensa el interletrado
+   de los titulares para que no se desarmen las líneas del template. */
+:root,
+body {
+  --_🔠-typography---letter-spacing--h1: -2px;
+  --_🔠-typography---letter-spacing--h2: -1.4px;
+  --_🔠-typography---letter-spacing--h3: -.8px;
+  --_🔠-typography---letter-spacing--h4: -.6px;
+  --_🔠-typography---letter-spacing--h5: -.4px;
+  --_🔠-typography---letter-spacing--h6: -.3px;
+}
+
+/* La cursiva del template era del serif; en Montserrat se sustituye por
+   el color de marca, que es el recurso de énfasis de mimbre. */
+em,
+i,
+.text-italic {
+  font-style: normal;
+  color: var(--_🎨-color--base---accent--primary);
+}
+
+/* El turquesa entra como acento en las etiquetas de sección. */
+.u-text-style-label-1,
+.u-text-style-label-2 {
+  color: var(--_🎨-color--base---accent--primary);
+}
+
+/* --------------------------------------------------------------------------
+   Ajustes de caja por el cambio de tipografía
+   Montserrat tiene ascendentes y descendentes distintas a IBM Plex, así que
+   algunas máscaras de texto animado quedaban 4 px más altas que el paso que
+   calcula GSAP y se asomaba la palabra siguiente. Se fija la caja de línea al
+   mismo token que usa el titular, sin tocar la animación.
+   -------------------------------------------------------------------------- */
+.text-wrap-animated-heading,
+.text-wrap-animated-heading .text-h1 {
+  line-height: var(--_🔠-typography---line-height--h1);
+}
+.text-wrap-animated-heading {
+  height: var(--_🔠-typography---line-height--h1);
+}
+.text-wrap-animated-heading em,
+.text-wrap-animated-heading i {
+  display: block;
+  line-height: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Botones principales en azul de marca
+   El template los pintaba de negro. Solo se redefinen los tokens del botón
+   primario en contexto claro; en las secciones oscuras el template conserva
+   su propia definición y el botón sigue siendo blanco.
+
+   Nota: los tokens se declaran también en `body` porque el template los
+   redefine ahí, y las variables CSS se heredan del ancestro más cercano,
+   sin importar la especificidad del selector.
+   -------------------------------------------------------------------------- */
+:root,
+body {
+  --_🎨-color--tokens---button-primary-default--background: var(--_🎨-color--base---accent--primary);
+  --_🎨-color--tokens---button-primary-default--text: #ffffff;
+  --_🎨-color--tokens---button-primary-default--border: rgba(0, 0, 0, 0);
+  --_🎨-color--tokens---button-primary-hover--background: #1a57e0;
+  --_🎨-color--tokens---button-primary-hover--text: #ffffff;
+  --_🎨-color--tokens---button-primary-hover--border: rgba(0, 0, 0, 0);
+}
+
+/* --------------------------------------------------------------------------
+   Logo de mimbre en la barra y el pie
+   El template dimensionaba su logotipo con un ancho fijo pensado para un
+   lockup horizontal más estrecho. Se ajusta la caja para el de mimbre.
+   -------------------------------------------------------------------------- */
+.logo-mimbre {
+  display: block;
+  width: auto;
+  height: 28px;
+}
+.footer .logo-mimbre {
+  height: 32px;
+}
+
+/* --------------------------------------------------------------------------
+   La barra redefine el botón primario en negro. En mimbre el botón principal
+   es azul de marca, también arriba.
+   -------------------------------------------------------------------------- */
+.master-navigation,
+.master-navigation.sticky {
+  --_🎨-color--tokens---button-primary-default--background: var(--_🎨-color--base---accent--primary);
+  --_🎨-color--tokens---button-primary-default--text: #ffffff;
+  --_🎨-color--tokens---button-primary-hover--background: #1a57e0;
+  --_🎨-color--tokens---button-primary-hover--text: #ffffff;
+}
+
+/* Dos rejillas seguidas de principios necesitan aire entre ellas. */
+.feature-thirds + .feature-thirds {
+  margin-top: var(--spacing--24, 24px);
+}
+
+/* --------------------------------------------------------------------------
+   Énfasis sobre superficies oscuras o azules
+   El azul de marca no se lee encima de sí mismo. En esos bloques el énfasis
+   pasa al turquesa, que es el otro color del logo.
+   -------------------------------------------------------------------------- */
+.card-positioning.right em,
+.section.cta-b-section em,
+.section.callout-section em,
+.card-cta-a em,
+.footer em {
+  color: #40e1e1;
+}
