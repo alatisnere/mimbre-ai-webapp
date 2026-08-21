@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /blogs/
+Disallow: /homepage/
+Disallow: /contact/
+Disallow: /pricing.html
+Disallow: /case-studies.html
+Disallow: /case-study-no-cms.html
+Disallow: /detail_blog.html
+Disallow: /detail_case-studies.html
+Disallow: /401.html
+
+Sitemap: https://www.mimbre.ai/sitemap.xml
