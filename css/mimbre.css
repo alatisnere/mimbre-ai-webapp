@@ -117,23 +117,39 @@ i,
 }
 
 /* --------------------------------------------------------------------------
-   Ajustes de caja por el cambio de tipografía
-   Montserrat tiene ascendentes y descendentes distintas a IBM Plex, así que
-   algunas máscaras de texto animado quedaban 4 px más altas que el paso que
-   calcula GSAP y se asomaba la palabra siguiente. Se fija la caja de línea al
-   mismo token que usa el titular, sin tocar la animación.
+   Titular rotativo del hero
+   La ventana que recorta las palabras mide 76 px (50 px en móvil) y GSAP
+   calcula el paso de la animación con ese mismo número. Montserrat da una caja
+   de línea distinta a la de IBM Plex, así que cada palabra dejaba de medir lo
+   que mide el paso y se asomaba la siguiente. Se fija la caja de cada palabra
+   al alto exacto de la ventana. La animación no se toca.
    -------------------------------------------------------------------------- */
-.text-wrap-animated-heading,
-.text-wrap-animated-heading .text-h1 {
-  line-height: var(--_🔠-typography---line-height--h1);
-}
 .text-wrap-animated-heading {
-  height: var(--_🔠-typography---line-height--h1);
+  height: 76px;
+  line-height: 76px;
+  overflow: hidden;
+}
+.text-wrap-animated-heading .text-h1 {
+  height: 76px;
+  line-height: 76px;
+  display: block;
 }
 .text-wrap-animated-heading em,
 .text-wrap-animated-heading i {
   display: block;
-  line-height: inherit;
+  line-height: 76px;
+}
+
+@media screen and (max-width: 767px) {
+  .text-wrap-animated-heading,
+  .text-wrap-animated-heading .text-h1 {
+    height: 50px;
+    line-height: 50px;
+  }
+  .text-wrap-animated-heading em,
+  .text-wrap-animated-heading i {
+    line-height: 50px;
+  }
 }
 
 /* --------------------------------------------------------------------------
